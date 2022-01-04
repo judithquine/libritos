@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+<body>
+<header th:replace="fragments/header"></header>
+    <section class="container">
+        <h1 th:text="${title}"></h1>
+        <table class="table" >
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tbody>
+            <tr th:each="book: ${books}">
+                <th scope="row" th:text="${book.id}"></th>
+                <td th:text="${book.title}"></td>
+                <td th:text="${book.author}"></td>
+                <td th:text="${book.category}"></td>
+            </tr>
+            </tbody>
+            </tbody>
+        </table>
+    </section>
+<footer th:replace="fragments/footer"></footer>
+</body>
+</html>
