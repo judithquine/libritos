@@ -11,7 +11,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -56,5 +57,24 @@ public class ApplicationTest {
                 mockMvc.perform(get("/books/new"))
                         .andExpect(status().isOk())
                         .andExpect(view().name("books/new"));
+        }
+
+        @Test
+        void allowsToCreateANewBook() throws Exception {
+                mockMvc.perform(post("/books/new")
+                                .param("title", "Harry Potter and the Philosopher's Stone")
+                                .param("author", "J.K. Rowling")
+                                .param("category", "fantasy")
+                        )
+                        .andExpect(status().is3xxRedirection())
+                        .andExpect(redirectedUrl("/books"))
+                ;
+
+                List<Book> existingBooks = (List<Book>) bookRepository.findAll();
+                assertThat(existingBooks, contains(allOf(
+                        hasProperty("title", equalTo("Harry Potter and the Philosopher's Stone")),
+                        hasProperty("author", equalTo("J.K. Rowling")),
+                        hasProperty("category", equalTo("fantasy"))
+                )));
         }
 }
