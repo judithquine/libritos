@@ -11,11 +11,4 @@ public class HomeController {
         String home() {
             return "home";
         }
-
-        @GetMapping("/books/new")
-        String getForm(Model model) {
-            Book book = new Book();
-            model.addAttribute("book", book);
-            return "books/new";
-        }
 }
