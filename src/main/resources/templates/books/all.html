@@ -13,6 +13,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Author</th>
                 <th scope="col">Category</th>
+                <th scope="col">Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -22,6 +23,9 @@
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
                 <td th:text="${book.category}"></td>
+                <td>
+                    <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>
+                </td>
             </tr>
             </tbody>
             </tbody>
