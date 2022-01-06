@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -89,6 +90,16 @@ public class ApplicationTest {
                         .andExpect(view().name("books/edit"))
                         .andExpect(model().attribute("book", book))
                         .andExpect(model().attribute("title", "Edit book"));
+        }
+
+        @Test
+        void allowsToDeleteABook() throws Exception {
+                Book book = bookRepository.save(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "fantasy"));
+                mockMvc.perform(get("/books/delete/" + book.getId()))
+                        .andExpect(status().is3xxRedirection())
+                        .andExpect(redirectedUrl("/books"));
+
+                assertThat(bookRepository.findById(book.getId()), equalTo(Optional.empty()));
         }
 
 }
