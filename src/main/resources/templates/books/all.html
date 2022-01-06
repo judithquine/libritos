@@ -5,35 +5,22 @@
 <body>
 <header th:replace="fragments/header"></header>
     <section class="container">
-        <h1 th:text="${title}"></h1>
-        <table class="table" >
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">Category</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tbody>
-            <tr th:each="book: ${books}">
-                <th scope="row" th:text="${book.id}"></th>
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.author}"></td>
-                <td th:text="${book.category}"></td>
-                <td>
+        <div class="book-list">
+            <div class="book" th:each="book: ${books}">
+                <div class="img-container">
+                    <img th:src="${book.coverImage}">
+                </div>
+            <div class="info">
+                <div th:text="${book.title}"></div>
+                <div th:text="${book.author}"></div>
+                <div th:text="${book.category}"></div>
+            </div>
+                <div class="buttons">
                     <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>
-                </td>
-                <td>
                     <a class="btn btn-danger btn-sm" th:href="'/books/delete/'+${book.id}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
     </section>
 <footer th:replace="fragments/footer"></footer>
 </body>
