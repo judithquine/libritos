@@ -3,3 +3,26 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.book {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #fcf3cf;
+    padding: 10px;
+    transition-duration: 0.2s;
+}
+
+.book .img-container {
+    width: 80%;
+    height: 145px;
+    margin: auto;
+}
+
+.book .info {
+    margin: 10px 20px;
+    font-size: small;
+}
+
+.book .buttons {
+    margin-top: 10px;
+}

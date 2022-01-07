@@ -4,24 +4,24 @@
 </head>
 <body>
 <header th:replace="fragments/header"></header>
-    <section class="container">
-        <div class="book-list">
-            <div class="book" th:each="book: ${books}">
-                <div class="img-container">
+<section class="container">
+     <div class="book-list">
+         <div class="book" th:each="book: ${books}">
+             <div class="img-container">
                     <img th:src="${book.coverImage}">
-                </div>
-            <div class="info">
-                <div th:text="${book.title}"></div>
+             </div>
+             <div class="info">
+                <div th:text="${book.title} "></div>
                 <div th:text="${book.author}"></div>
                 <div th:text="${book.category}"></div>
-            </div>
-                <div class="buttons">
-                    <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>
-                    <a class="btn btn-danger btn-sm" th:href="'/books/delete/'+${book.id}">Delete</a>
-                </div>
-            </div>
-        </div>
-    </section>
+             </div>
+             <div class="buttons">
+                <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>
+                <a class="btn btn-danger btn-sm" th:href="'/books/delete/'+${book.id}">Delete</a>
+             </div>
+         </div>
+     </div>
+</section>
 <footer th:replace="fragments/footer"></footer>
 </body>
 </html>
