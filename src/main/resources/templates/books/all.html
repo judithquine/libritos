@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/head">
 </head>
 <body>
@@ -15,7 +15,7 @@
                 <div th:text="${book.author}"></div>
                 <div th:text="${book.category}"></div>
              </div>
-             <div class="buttons">
+             <div class="buttons" sec:authorize="isAuthenticated()">
                 <a class="btn btn-success btn-sm" th:href="'/books/edit/'+${book.id}">Edit</a>
                 <a class="btn btn-danger btn-sm" th:href="'/books/delete/'+${book.id}">Delete</a>
              </div>
