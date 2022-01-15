@@ -137,4 +137,18 @@ public class ApplicationTest {
                         .andExpect(model().attribute("books", not(hasItem(bookWithoutWord))));
         }
 
+       @Test
+        @WithMockUser
+        void returnsBooksFromAGivenCategory() throws Exception {
+
+                Book fantasyBook = bookRepository.save(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", "fantasy"));
+                Book softwareBook = bookRepository.save(new Book("Lean Software Development", "Mary Poppendieck", "software"));
+
+                mockMvc.perform(get("/books?category=fantasy"))
+                        .andExpect(status().isOk())
+                        .andExpect(view().name("books/all"))
+                        .andExpect(model().attribute("books", hasItem(fantasyBook)))
+                        .andExpect(model().attribute("books", not(hasItem(softwareBook))));
+        }
+
 }
